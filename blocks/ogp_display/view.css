@@ -1,0 +1,13 @@
+div.ogplink {
+    margin: 5px 10px;
+    padding: 5px;
+    border: solid 1px #222;
+    border-radius: 4px;
+}
+.ogplinktitle a{
+    font-size: larger;
+    color: #000099;
+}
+.ogplinktitle, .ogplinkcontent {
+    margin-bottom: 5px;
+}
