@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace Concrete\Package\OunziwOgpDisplay\Block\OgpDisplay;
 
 use Concrete\Core\Block\BlockController;
@@ -9,7 +9,10 @@ class Controller extends BlockController
 {
     protected $btTable = 'btOunziwOgpDisplay';
     protected $btInterfaceWidth = "320";
-    protected $btInterfaceHeight = "240";
+    protected $btInterfaceHeight = "320";
+
+    // for development
+    //protected $btCacheBlockOutput = false;
 
     protected $btCacheBlockOutput = true;
     protected $btCacheBlockOutputOnPost = true;
@@ -36,6 +39,15 @@ class Controller extends BlockController
         $this->set('ogp', $data);
     }
 
+    public function validate($args)
+    {
+        $error = $this->app->make('helper/validation/error');
+
+        if (!filter_var($args['url'], FILTER_VALIDATE_URL)) {
+            $error->add(t('Invalid URL.'));
+        }
+        return $error;
+    }
     protected function pickOgp($data) {
         if (empty($data)) {
             return array();

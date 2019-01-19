@@ -9,7 +9,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'ounziw_ogp_display';
     protected $appVersionRequired = '8.4.2';
-    protected $pkgVersion = '0.8';
+    protected $pkgVersion = '0.8.1';
 
     public function getPackageName()
     {
