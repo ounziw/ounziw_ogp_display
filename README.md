@@ -16,6 +16,9 @@ Ogp Display ブロックが追加されるので、ページへのリンクを�
 標準では、bootstrap系のスタイルシートを想定して、htmlクラスなどを設定している。
 blocks/ogp_display/view.php をオーバーライドする、カスタムテンプレートを作成する、などで、見た目の変更が可能。
 
+## 活用事例
+このアドオンを使用しているページの例: [減速機の回転数とトルク計算](https://calculator.jp/science/decelerator)
+
 ## キャッシュ
 Ogp Display ブロックは、6時間キャッシュする。(キャッシュ設定を変更したい場合は、blocks/ogp_display/controller.phpを編集してください)
 
