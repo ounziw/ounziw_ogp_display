@@ -23,7 +23,7 @@ blocks/ogp_display/view.php をオーバーライドする、カスタムテン�
 Ogp Display ブロックは、6時間キャッシュする。(キャッシュ設定を変更したい場合は、blocks/ogp_display/controller.phpを編集してください)
 
 ## 活用事例
-このアドオンを使用している例: [月70万ＰＶホームページ制作会社 レスキューワーク株式会社](https://my-mitsu.com/company)
+このアドオンを使用している例: [月70万PVホームページ制作会社 レスキューワーク株式会社](https://my-mitsu.com/company)
 
 ## 対応バージョン
 concrete5.8.4.2以降に対応。(8.4.1以前でも、8系なら動く可能性は高いですが、未検証)
