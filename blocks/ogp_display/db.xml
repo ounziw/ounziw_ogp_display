@@ -9,5 +9,11 @@
             <key/>
         </field>
         <field name="url" type="string" size="255"/>
+        <field name="title" type="string" size="255"/>
+        <field name="description" type="string" size="255"/>
+        <field name="image" type="string" size="255"/>
+        <field name="targetblank" type="boolean">
+            <default value="0" />
+        </field>
     </table>
 </schema>

@@ -10,11 +10,14 @@ concrete5 管理画面で有効化する
 ## 設定
 Ogp Display ブロックが追加されるので、ページへのリンクを表示したい箇所にブロックを置く。
 ブロックの設定画面で、ページのURLを設定する。
-取得対象のページは、UTF-8でエンコードされている必要がある。
+取得対象のページは、OGPがヘッダーに設定されており、かつUTF-8でエンコードされている必要がある。
 
 ## 見た目の調整
 標準では、bootstrap系のスタイルシートを想定して、htmlクラスなどを設定している。
 blocks/ogp_display/view.php をオーバーライドする、カスタムテンプレートを作成する、などで、見た目の変更が可能。
+
+## target="_blank"
+リンクに target="_blank" 属性を付けることができる。target="_blank" を設定する場合は、 rel="nofollow noopener noreferrer" も付与する。(view.phpを編集すれば変更可能)
 
 ## キャッシュ
 Ogp Display ブロックは、6時間キャッシュする。(キャッシュ設定を変更したい場合は、blocks/ogp_display/controller.phpを編集してください)

@@ -1,4 +1,4 @@
-<?php
+<?php  
 namespace Concrete\Package\OunziwOgpDisplay\Block\OgpDisplay;
 
 use Concrete\Core\Block\BlockController;
@@ -42,9 +42,13 @@ class Controller extends BlockController
     public function validate($args)
     {
         $error = $this->app->make('helper/validation/error');
-
         if (!filter_var($args['url'], FILTER_VALIDATE_URL)) {
             $error->add(t('Invalid URL.'));
+        }
+
+        $error = $this->app->make('helper/validation/error');
+        if ($args['image'] && !filter_var($args['image'], FILTER_VALIDATE_URL)) {
+            $error->add(t('Invalid image override.'));
         }
         return $error;
     }
@@ -57,25 +61,37 @@ class Controller extends BlockController
         @$dom_document->loadHTML(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8'));
         $xml_object = simplexml_import_dom($dom_document);
 
-        $og_title_xpath = $xml_object->xpath('//meta[@property="og:title"]/@content');
-        if ( ! empty($og_title_xpath)) {
-            $output['title'] = (string)$og_title_xpath[0];
+        if ($this->title) {
+            $output['title'] = $this->title;
         } else {
-            $output['title'] = '';
+            $og_title_xpath = $xml_object->xpath('//meta[@property="og:title"]/@content');
+            if ( ! empty($og_title_xpath)) {
+                $output['title'] = (string)$og_title_xpath[0];
+            } else {
+                $output['title'] = '';
+            }
         }
 
-        $og_description_xpath = $xml_object->xpath('//meta[@property="og:description"]/@content');
-        if ( ! empty($og_description_xpath)) {
-            $output['description'] = (string)$og_description_xpath[0];
+        if ($this->description) {
+            $output['description'] = $this->description;
         } else {
-            $output['description'] = '';
+            $og_description_xpath = $xml_object->xpath('//meta[@property="og:description"]/@content');
+            if (!empty($og_description_xpath)) {
+                $output['description'] = (string)$og_description_xpath[0];
+            } else {
+                $output['description'] = '';
+            }
         }
 
-        $og_image_xpath = $xml_object->xpath('//meta[@property="og:image"]/@content');
-        if ( ! empty($og_image_xpath)) {
-            $output['image'] = (string)$og_image_xpath[0];
+        if ($this->image) {
+            $output['image'] = $this->image;
         } else {
-            $output['image'] = '';
+            $og_image_xpath = $xml_object->xpath('//meta[@property="og:image"]/@content');
+            if (!empty($og_image_xpath)) {
+                $output['image'] = (string)$og_image_xpath[0];
+            } else {
+                $output['image'] = '';
+            }
         }
 
         return $output;
